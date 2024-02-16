@@ -1,0 +1,35 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    height: 100vh;
+    height: 100dvh;
+    display: grid;
+    place-content: center;
+    background-color: #244aa5;
+}
+
+img{
+    max-width: 100%;
+}
+
+.flag{
+    width: min(100vw, 700px);
+}
+
+#diff{
+    margin: 0;
+    font-family: monospace;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    color: white;
+    font-size: 1rem;
+    text-align: left;
+    line-height: 1.5;
+    text-shadow: 1px 1px 13px yellow;
+    color: #ffdc00;
+}

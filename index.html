@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Kosova Independence Counter</title>
+</head>
+<body>
+    <p id="diff"></p>
+    <img class="flag" src="kosova.webp" alt="Kosova Flag">
+
+    <script>
+        let diff = document.getElementById('diff');
+
+        updateTime();
+
+        setInterval(updateTime, 1000);
+
+        function updateTime(){
+            let {years, months, days, hours, minutes, seconds} = getCurrentDifference();
+            diff.innerHTML = `${years} year${years === 1? '' : 's'}<br>${months} month${months === 1? '' : 's'}<br>${days} day${days === 1? '' : 's'}<br>${hours} hour${hours === 1? '' : 's'}<br>${minutes} minute${minutes === 1? '' : 's'}<br>${seconds} second${seconds === 1? '' : 's'}`
+        }
+
+        function getCurrentDifference(){
+            let startDate = new Date();
+            startDate.setFullYear(2008, 1, 17);
+
+            let now = new Date();
+
+            let difference = now - startDate;
+
+            let years = now.getFullYear() - startDate.getFullYear();
+
+            let months = now.getMonth() - startDate.getMonth();
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            let days = now.getDate() - startDate.getDate();
+            if (days < 0) {
+                months--;
+                let tempDate = new Date(now);
+                tempDate.setMonth(now.getMonth() - 1);
+                days += Math.floor((now - tempDate) / (1000 * 60 * 60 * 24));
+            }
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+
+            if (days < 0) {
+                let tempDate = new Date(now);
+                tempDate.setMonth(now.getMonth() - 1);
+                days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+                months--;
+            }
+            if (months < 0) {
+                months += 12;
+                years--;
+            }
+
+            return {years, months, days, hours, minutes, seconds}
+        }
+    </script>
+</body>
+</html>
